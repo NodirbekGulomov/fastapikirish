@@ -6,10 +6,9 @@ class Note:
     pass
 
 
-def create_note():
-    note=Note()
-    
-    with SessionLocal()as session:
-        session.add(note)
-        
-        session.commit()
+def create_note(session: SessionLocal):
+    note = Note()
+
+    session.add(note)
+
+    session.commit()
