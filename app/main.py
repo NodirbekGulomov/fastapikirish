@@ -1,14 +1,17 @@
-class SessionLocal:
+from fastapi import FastAPI, Depends
+
+
+def get_message():
+    return "Hello world from dependency"
+
+
+def get_db():
     pass
 
 
-class Note:
-    pass
+app = FastAPI()
 
 
-def create_note(session: SessionLocal):
-    note = Note()
-
-    session.add(note)
-
-    session.commit()
+@app.get("/")
+def handle_root(message: str = Depends(get_message), db: str = Depends(get_db)):
+    return {"message": "Hello world!"}
